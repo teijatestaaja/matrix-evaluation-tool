@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    
+        <!-- move to css -->
+        <style>
+            .table-layout {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            .table-layout td, .table-layout th {
+                border: 1px solid grey;
+                padding: 5px 5px 0;
+            }
+            .table-layout td {
+                text-align: left;
+            }
+        </style>
+
+        <script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>     
+        <script>
+            var DATA_COLUMNS = 4; // Change this according to the amount of clickable columns
+            
+            $(document).ready(function(){
+                $("#matrix td").click(function() {     
+ 
+                    var column_num = parseInt( $(this).index() ) + 1;
+                    var row_num = parseInt( $(this).parent().index() ) + 1;    
+        
+                    // Taulukon solut selkokielellä
+                    // Toimii $("#result").html( "Row_num =" + row_num + "  ,  Column_num ="+ column_num);
+
+                    // Only columns 2...n can be clicked, one cell in a row
+                    if (column_num > 1) {
+                        // First clear all color from the same row
+                        for (i=1; i<=DATA_COLUMNS; i++) {
+                            document.getElementById('matrix').rows[row_num-1].cells[i].bgColor = "#FFFFFF";
+                        }
+                        // Then hightlight selected cell
+                        document.getElementById('matrix').rows[row_num-1].cells[column_num-1].bgColor = "#3399FF";
+                    }     
+                });
+            });
+        </script>
+    </head>
+
+    <h1>Kotlin Skills Evaluation Matrix</h1>
+    <form id="test-form">   
+        <table id="matrix" class="table-layout">     
+            <!-- Titles -->
+            <tr>
+                <th>Knowledge area</th>
+                <th>Beginner</th>
+                <th>Average</th>
+                <th>High</th>
+                <th>Hero</th>
+            </tr>
+            
+            <!--1st ROW-->
+            <tr>
+                <td>Basic types</td>
+                <td id="td1">I am familiar with</td>
+                <td id="td2">I know the basics</td>
+                <td id="td3">I can apply my knowledge</td>
+                <td id="td4">I'm the guru</td>
+            </tr>
+
+            <!--2nd ROW-->
+            <tr>
+                <td>Variables</td>  
+                <td id="td5">I am familiar with</td>
+                <td id="td6">I know the basics</td>
+                <td id="td7">I can apply my knowledge</td>
+                <td id="td8">I'm the guru</td>
+            </tr>
+            
+            <!--3rd ROW-->
+            <tr>
+                <td>Classes</td>    
+                <td id="td9">I am familiar with</td>
+                <td id="td10">I know the basics</td>
+                <td id="td11">I can apply my knowledge</td>
+                <td id="td12">I'm the guru</td>
+            </tr>
+            
+            <!--4th ROW-->
+            <tr>
+                <td>Functions</td>  
+                <td id="td13">I am familiar with</td>
+                <td id="td14">I know the basics</td>
+                <td id="td15">I can apply my knowledge</td>
+                <td id="td16">I'm the guru</td>
+            </tr>
+            
+            <!--5th ROW-->
+            <tr>
+                <td>Collections</td>
+                <td id="td17">I am familiar with</td>
+                <td id="td18">I know the basics</td>
+                <td id="td19">I can apply my knowledge</td>
+                <td id="td20">I'm the guru</td>
+            </tr>
+        </table>
+        <!-- Show cell that was clicked -->
+        <!--DEBUG: <div id="result"> </div> -->
+
+        <br>
+        <div>
+            <button type="submit" id="submit-form">Save</button>
+        </div>
+    </form>
+</html>
